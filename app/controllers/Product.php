@@ -1,18 +1,14 @@
 <?php
 
-
 namespace App\controllers;
-
 
 use App\providers\ProductDataProvider;
 use App\providers\VariantDataProvider;
 use MongoDB\BSON\ObjectId;
 
-class Product
-{
+class Product {
 
-    public function showProduct($id)
-    {
+    public function showProduct($id) {
         $searchArray = ['_id' => new ObjectId($id)];
         $obj = new ProductDataProvider();
         $result = $obj->findOne($searchArray);
@@ -20,8 +16,7 @@ class Product
         return $result;
     }
 
-    public function showAllProducts()
-    {
+    public function showAllProducts() {
         $obj = new ProductDataProvider();
         $products = $obj->find();
         $result = [];
@@ -30,17 +25,14 @@ class Product
             $result[] = $product;
         }
         return $result;
-
     }
 
-    public function insertProduct($data)
-    {
+    public function insertProduct($data) {
         $obj = new ProductDataProvider();
         return $obj->insertOne($data);
     }
 
-    public function updateProduct($id, $data)
-    {
+    public function updateProduct($id, $data) {
         $searchArray = ['_id' => new ObjectId($id)];
         $updateArray = ['$set' => $data];
         $obj = new ProductDataProvider();
@@ -54,22 +46,17 @@ class Product
         return $result;
     }
 
-    public function deleteProduct($id)
-    {
+    public function deleteProduct($id) {
         $searchArray = ['_id' => new ObjectId($id)];
         $obj = new ProductDataProvider();
         return $obj->deleteOne($searchArray);
-
     }
 
-    public function updateProductStatus($id, $data)
-    {
+    public function updateProductStatus($id, $data) {
         $searchArray = ['_id' => new ObjectId($id)];
         $updateArray = ['$set' => $data];
         $obj = new ProductDataProvider();
         return $obj->updateOne($searchArray, $updateArray);
-
     }
-
 
 }

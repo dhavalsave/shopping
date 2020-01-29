@@ -8,11 +8,9 @@ use App\providers\VariantDataProvider;
 use Exception;
 use MongoDB\BSON\ObjectId;
 
-class Order
-{
+class Order {
 
-    public function placeOrder($customerId)
-    {
+    public function placeOrder($customerId) {
         $pipeline = [
             [
                 '$match' => [
@@ -66,8 +64,7 @@ class Order
         return $this->updateStock($result[0]);
     }
 
-    public function checkVariantStatus($order)
-    {
+    public function checkVariantStatus($order) {
         $variantIds = array();
         $variantMap = [];
         foreach ($order['products'] as $product) {
@@ -91,13 +88,10 @@ class Order
                 return false;
             }
         }
-
-
         return true;
     }
 
-    public function updateStock($data)
-    {
+    public function updateStock($data) {
         $bulkOperations = [];
         $variantsObj = new VariantDataProvider();
         foreach ($data['products'] as $product) {
@@ -114,8 +108,7 @@ class Order
         return $variantsObj->bulkWrite($bulkOperations, true);
     }
 
-    public function showOrder($customerId)
-    {
+    public function showOrder($customerId) {
         $searchArray = ['customer_id' => $customerId];
         $obj = new OrderDataProvider();
         return $obj->find($searchArray);
