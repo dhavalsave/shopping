@@ -11,6 +11,7 @@ use MongoDB\BSON\ObjectId;
 class Order {
 
     public function placeOrder($customerId) {
+        // query to get order
         $pipeline = [
             [
                 '$match' => [
