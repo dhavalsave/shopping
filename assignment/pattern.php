@@ -19,17 +19,25 @@ $print="";
 for($j=$str_len,$i=0;$j>0,$i<$str_len;$j-=2,$i+=2)
 {
     $print=substr($str1,0,$j);
-    $print=$print.printSpace($str_len-$j);
-    $print=$print.printSpace($str_len-$i);
+    $print=$print.printSpace($i);
+    $print=$print.printSpace($i);
     $print=$print.substr($str2,$i,$str_len);
     echo $print;
     echo("\n");
 
-//    echo substr($str1,0,$j);
-//        echo(printSpace($str_len-$j));
-//        echo(printSpace($str_len-$i));
-//    echo substr($str2,$i,$str_len);
-//    echo("\n");
+
+
+}
+for($i=$str_len,$j=0;$i>0,$j<$str_len;$i-=2,$j+=2)
+{
+    $print=substr($str1,0,$j);
+    $print=$print.printSpace($i);
+    $print=$print.printSpace($i);
+    $print=$print.substr($str2,$i,$str_len);
+    echo $print;
+    echo("\n");
+
+
 
 }
 
